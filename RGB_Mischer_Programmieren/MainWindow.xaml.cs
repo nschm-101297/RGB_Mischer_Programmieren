@@ -201,5 +201,15 @@ namespace RGB_Mischer_Programmieren
             speichern = new Speichern();
             speichern.speichernFenster.ShowDialog();
         }
+
+        private void ChangeBackgroundColor(object sender, RoutedEventArgs e)
+        {
+            this.Background = new SolidColorBrush(color.MyColor);
+        }
+
+        private void ChangeFontColor(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
