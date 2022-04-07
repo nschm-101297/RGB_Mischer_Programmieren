@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RGB_Mischer_Programmieren"
         mc:Ignorable="d"
-        Title="Farb-Mischer" Height="595" Width="800">
+        Title="Farb-Mischer" Height="595" Width="800" Foreground="Green">
     <Window.Resources>
         <local:ValueConverter x:Key="converter"/>
     </Window.Resources>
@@ -27,7 +27,10 @@
             </MenuItem>
             <MenuItem Header="Bearbeiten">
                 <MenuItem Header="Kopieren" Click="CopyContent_Click"/>
-                <MenuItem Header="Hintergrund"/>
+                <MenuItem Header="Hintergrund/Farbe">
+                    <MenuItem Header="Fenster" Click="ChangeBackgroundColor"/>
+                    <MenuItem Header="Schriftart" Click="ChangeFontColor"/>
+                </MenuItem>
             </MenuItem>
         </Menu>
         
