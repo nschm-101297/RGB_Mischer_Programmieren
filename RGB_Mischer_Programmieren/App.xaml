@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:RGB_Mischer_Programmieren"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>
