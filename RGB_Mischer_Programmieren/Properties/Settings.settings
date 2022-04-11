@@ -14,5 +14,8 @@
     <Setting Name="BackgroundWindow" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">White</Value>
     </Setting>
+    <Setting Name="Pfad_Save" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\schme\Documents</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

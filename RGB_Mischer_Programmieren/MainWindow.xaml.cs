@@ -209,7 +209,8 @@ namespace RGB_Mischer_Programmieren
                 MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            speichern = new Speichern();
+            color.ColorName = txt_NameColor.Text;
+            speichern = new Speichern(color);
             speichern.speichernFenster.ShowDialog();
         }
 
