@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using Color_Library;
+using System.Configuration;
+using System.Collections.Specialized;
 
 
 namespace RGB_Mischer_Programmieren
@@ -25,12 +27,21 @@ namespace RGB_Mischer_Programmieren
     {
         ColorValues color;
         Speichern speichern;
+        Binding backgroundWindow;
         public MainWindow()
         {
             InitializeComponent();
             color = new ColorValues();
             rc_Finished_Color.Fill = colorChanged();
             txt_FinishedCommand.Text = FinishedCommand();
+            var newColor = Properties.Settings.Default.BackgroundWindow;
+            this.Background = new SolidColorBrush(new Color { A = newColor.A, B = newColor.B, R = newColor.R, G = newColor.G });
+            backgroundWindow = new Binding();
+        }
+
+        private void SetBinding()
+        {
+
         }
 
         private void sl_Red_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -204,12 +215,33 @@ namespace RGB_Mischer_Programmieren
 
         private void ChangeBackgroundColor(object sender, RoutedEventArgs e)
         {
-            this.Background = new SolidColorBrush(color.MyColor);
+            Properties.Settings.Default.BackgroundWindow = System.Drawing.Color.FromArgb(color.Transparency,
+              color.Red, color.Green, color.Blue);
+            Properties.Settings.Default.Save();
         }
 
         private void ChangeFontColor(object sender, RoutedEventArgs e)
         {
-            
+            //SolidColorBrush foregroundColor = (SolidColorBrush)FindResource("foreground");
+            //foregroundColor.Color = color.MyColor;
+            Properties.Settings.Default.Foreground = System.Drawing.Color.FromArgb(color.Transparency,
+                color.Red, color.Green, color.Blue);
+            Properties.Settings.Default.Save();
+        }
+
+        private void ChangeBackgroundColorControls(object sender, RoutedEventArgs e)
+        {
+            //SolidColorBrush backgroundColor = (SolidColorBrush)FindResource("background");
+            //SolidColorBrush backgroundColorButton = (SolidColorBrush)FindResource("backgroundButton");
+            //SolidColorBrush backgroundColor = (SolidColorBrush)Application.Current.Resources["background"];
+            //SolidColorBrush backgroundColorButton = (SolidColorBrush)Application.Current.Resources["backgroundButton"];
+            //backgroundColor.Color = color.MyColor;
+            //backgroundColorButton.Color = color.MyColor;
+            Properties.Settings.Default.Background = System.Drawing.Color.FromArgb(color.Transparency,
+               color.Red, color.Green, color.Blue);
+            Properties.Settings.Default.BackgroundButton = System.Drawing.Color.FromArgb(color.Transparency,
+               color.Red, color.Green, color.Blue);
+            Properties.Settings.Default.Save();
         }
     }
 }

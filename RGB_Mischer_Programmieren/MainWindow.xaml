@@ -4,11 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RGB_Mischer_Programmieren"
+        xmlns:properties="clr-namespace:RGB_Mischer_Programmieren.Properties"
         mc:Ignorable="d"
-        Title="Farb-Mischer" Height="595" Width="800" Foreground="Green">
+        Title="Farb-Mischer" Height="595" Width="800">
     <Window.Resources>
         <local:ValueConverter x:Key="converter"/>
+        <local:ColorValueConverter x:Key="colorConverter"/>
     </Window.Resources>
+    <Window.Background>
+        <SolidColorBrush Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundWindow,
+              Converter={StaticResource colorConverter}}"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,7 +25,8 @@
         </Grid.RowDefinitions>
         
         <!-- MenüBar -->
-        <Menu Background="Bisque">
+        <Menu Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
+              Converter={StaticResource colorConverter}}">
             <MenuItem Header="Datei">
                 <MenuItem Header="Öffnen"/>
                 <MenuItem Header="Speichern" Click="ValuesSaving"/>
@@ -29,19 +36,23 @@
                 <MenuItem Header="Kopieren" Click="CopyContent_Click"/>
                 <MenuItem Header="Hintergrund/Farbe">
                     <MenuItem Header="Fenster" Click="ChangeBackgroundColor"/>
+                    <MenuItem Header="Steuerelemente" Click="ChangeBackgroundColorControls"/>
                     <MenuItem Header="Schriftart" Click="ChangeFontColor"/>
                 </MenuItem>
             </MenuItem>
         </Menu>
         
         <!-- Form Farbe anzeigt einfügen -->
-        <GroupBox Header="Fertige Farbe" Margin="10" Grid.Row="1" BorderBrush="Black" BorderThickness="2" Height="90">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="Farbe:" VerticalAlignment="Center" Margin="5"/>
+        <GroupBox Header="Fertige Farbe" Margin="10" Grid.Row="1" BorderBrush="Black" BorderThickness="2" Height="90"
+                  Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Farbe:" VerticalAlignment="Center" Margin="5" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
+                       Converter={StaticResource colorConverter}}" 
+                       Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
             <Canvas Grid.Column="1">
                 <Rectangle Height="50" Width="50" Margin="7" Stroke="Black" StrokeThickness="2"
                            Name="rc_Finished_Color" VerticalAlignment="Center"/>
@@ -60,7 +71,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <GroupBox Header="Farbmischer" BorderBrush="Black" BorderThickness="2"
-                      Margin="10">
+                      Margin="10" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -75,33 +86,42 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center"
-                           Content="Rot:" />
+                           Content="Rot:" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+                           Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
                     <Label Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center"
-                           Content="Grün:"/>
+                           Content="Grün:" 
+                           Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+                           Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
                     <Label Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Center"
-                           Content="Blau:"/>
+                           Content="Blau:" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+                           Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
                     <Label Grid.Column="0" Grid.Row="3" Margin="5" VerticalAlignment="Center"
-                           Content="Trans.:"/>
-                    <Slider Name="sl_Red" Minimum="0" Maximum="255" Margin="5" VerticalAlignment="Center"
+                           Content="Trans.:" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+                           Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
+                    <Slider Name="sl_Red" Minimum="0" Maximum="255" Margin="5" VerticalAlignment="Center" 
                             Grid.Column="1" Grid.Row="0" Width="525"
                             TickFrequency="1" ToolTip="Wert für Rot"
                             IsSnapToTickEnabled="True"
-                            ValueChanged="sl_Red_ValueChanged"/>
+                            ValueChanged="sl_Red_ValueChanged"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
                     <Slider Name="sl_Green" Minimum="0" Maximum="255" Margin="5" VerticalAlignment="Center"
                             Grid.Column="1" Grid.Row="1" Width="525"
                             TickFrequency="1" ToolTip="Wert für Grün"
                             IsSnapToTickEnabled="True"
-                            ValueChanged="sl_Green_ValueChanged"/>
+                            ValueChanged="sl_Green_ValueChanged"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
                     <Slider Name="sl_Blue" Minimum="0" Maximum="255" Margin="5" VerticalAlignment="Center"
                             Grid.Column="1" Grid.Row="2" Width="525"
                             TickFrequency="1" ToolTip="Wert für Blau"
                             IsSnapToTickEnabled="True"
-                            ValueChanged="sl_Blue_ValueChanged"/>
+                            ValueChanged="sl_Blue_ValueChanged"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
                     <Slider Name="sl_Trans" Minimum="0" Maximum="255" Margin="5" VerticalAlignment="Center"
                             Grid.Column="1" Grid.Row="3" Width="525"
                             TickFrequency="1" ToolTip="Wert für Blau"
                             IsSnapToTickEnabled="True"
-                            ValueChanged="sl_Trans_ValueChanged" Value="255"/>
+                            ValueChanged="sl_Trans_ValueChanged" Value="255"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
                     <Grid Grid.ColumnSpan="2" Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -113,75 +133,123 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="Rot:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        <TextBox Grid.Column="1" Name="txt_Red" Text="{Binding ElementName=sl_Red, Path=Value, 
+                        <Label Grid.Column="0" Content="Rot:" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                               Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                               Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
+                        <TextBox Grid.Column="1" Name="txt_Red" 
+                                 Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+                                 Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"
+                                 Text="{Binding ElementName=sl_Red, Path=Value, 
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, 
                                  Converter={StaticResource converter}, ConverterParameter=X2}"
                         Width="25" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                        <Label Grid.Column="2" Content="Grün:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        <TextBox Grid.Column="3" Name="txt_Green" Text="{Binding ElementName=sl_Green, Path=Value, 
+                        <Label Grid.Column="2" Content="Grün:" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                               Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                               Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
+                        <TextBox Grid.Column="3" Name="txt_Green" 
+                                 Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+                                 Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"
+                                 Text="{Binding ElementName=sl_Green, Path=Value, 
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay,
                                  Converter={StaticResource converter}, ConverterParameter=X2}"
                                  Width="25" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                        <Label Grid.Column="4" Content="Blau:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        <TextBox Grid.Column="5" Name="txt_Blue" Text="{Binding ElementName=sl_Blue, Path=Value, 
+                        <Label Grid.Column="4" Content="Blau:" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                               Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                               Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
+                        <TextBox Grid.Column="5" Name="txt_Blue" 
+                                 Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+                                 Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}" 
+                                 Text="{Binding ElementName=sl_Blue, Path=Value, 
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay,
                                  Converter={StaticResource converter}, ConverterParameter=X2}"
                                  Width="25" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                        <Label Grid.Column="6" Content="Trans.:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        <TextBox Grid.Column="7" Name="txt_Trans" Text="{Binding ElementName=sl_Trans, Path=Value, 
+                        <Label Grid.Column="6" Content="Trans.:" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                               Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                               Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
+                        <TextBox Grid.Column="7" Name="txt_Trans" 
+                                 Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+                                 Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"
+                                 Text="{Binding ElementName=sl_Trans, Path=Value, 
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay,
                                  Converter={StaticResource converter}, ConverterParameter=X2}"
                                  Width="25" Margin="0,0,5,0" VerticalAlignment="Center"/>
                     </Grid>
-                    <Label Grid.Row="5" Margin="5" Width="42">
+                    <Label Grid.Row="5" Margin="5" Width="42" 
+                           Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                           Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}">
                         <TextBlock TextWrapping="Wrap">
                             Name der Farbe:
                         </TextBlock>  
                     </Label>
                     <TextBox Name="txt_NameColor" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" 
-                             Width="100"/>
+                             Width="100" 
+                             Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+                             Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
                 </Grid>
             </GroupBox>
             <!-- Formen Farb Darstellung-->
             <GroupBox Grid.Column="1" BorderBrush="Black" BorderThickness="2"
-                      Header="Formen" Margin="5" HorizontalAlignment="Center">
+                      Header="Formen" Margin="5" HorizontalAlignment="Center" 
+                      Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Margin="15" Name="btn_Rectangle" Click="btn_Rectangle_Click">
+                    <Button Grid.Row="0" Margin="15" Name="btn_Rectangle" Click="btn_Rectangle_Click" 
+                            Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, Converter={StaticResource colorConverter}}">
                         <Image Source="Pictures\Rectangle.png"/>
                     </Button>
-                    <Button Grid.Row="1" Margin="15" Name="btn_Circle" Click="btn_Circle_Click">
+                    <Button Grid.Row="1" Margin="15" Name="btn_Circle" Click="btn_Circle_Click" 
+                            Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, Converter={StaticResource colorConverter}}">
                         <Image Source="Pictures\Circle.png"/>
                     </Button>
-                    <Button Grid.Row="2" Margin="15" Name="btn_Triangle" Click="btn_Triangle_Click">
+                    <Button Grid.Row="2" Margin="15" Name="btn_Triangle" Click="btn_Triangle_Click" 
+                            Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, Converter={StaticResource colorConverter}}">
                         <Image Source="Pictures\Triangle.png"/>
                     </Button>
                 </Grid>
             </GroupBox>
         </Grid>
-        <Label Grid.Row="3" Content="Befehl Code:" Margin="10,0,10,0"/>
+        <Label Grid.Row="3" Content="Befehl Code:" Margin="10,0,10,0" 
+               Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}" 
+               Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Width="500" Height="65" Margin="10,-50,10,0" Name="txt_FinishedCommand" IsReadOnly="True" TextWrapping="Wrap"/>
+            <TextBox Width="500" Height="65" Margin="10,-50,10,0" Name="txt_FinishedCommand" IsReadOnly="True" TextWrapping="Wrap" 
+                     Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                     Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, Converter={StaticResource colorConverter}}"/>
             <GroupBox Grid.Column="1" Header="Befehle" Margin="5"
-                      BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center">
+                      BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center" 
+                      Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Width="125" Margin="5" Click="CopyContent_Click">Kopieren</Button>
-                    <Button Grid.Row="1" Width="125" Margin="5">Öffnen</Button>
-                    <Button Grid.Row="2" Width="125" Margin="5" Click="ValuesSaving">Speichern</Button>
+                    <Button Grid.Row="0" Width="125" Margin="5" Click="CopyContent_Click" 
+                            Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, Converter={StaticResource colorConverter}}">
+                         Kopieren
+                    </Button>
+                    <Button Grid.Row="1" Width="125" Margin="5" 
+                            Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, Converter={StaticResource colorConverter}}">
+                        Öffnen
+                    </Button>
+                    <Button Grid.Row="2" Width="125" Margin="5" Click="ValuesSaving" 
+                            Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
+                            Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, Converter={StaticResource colorConverter}}">
+                        Speichern
+                    </Button>
                 </Grid>
             </GroupBox>
         </Grid>
