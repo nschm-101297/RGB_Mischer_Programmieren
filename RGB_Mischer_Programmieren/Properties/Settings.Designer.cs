@@ -70,5 +70,17 @@ namespace RGB_Mischer_Programmieren.Properties {
                 this["BackgroundWindow"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\schme\\Documents")]
+        public string Pfad_Save {
+            get {
+                return ((string)(this["Pfad_Save"]));
+            }
+            set {
+                this["Pfad_Save"] = value;
+            }
+        }
     }
 }

@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using System.Xml.Serialization;
+using Color_Library;
+using Microsoft.Win32;
 
 namespace RGB_Mischer_Programmieren
 {
@@ -19,7 +23,11 @@ namespace RGB_Mischer_Programmieren
     /// </summary>
     public partial class Speichern : Window
     {
-        public Speichern()
+        ColorValues color;
+        SaveFileDialog saveColor;
+        XmlSerializer colorSerializer;
+        FileStream colorStream;
+        public Speichern()  
         {
             /*
              Eigenschaft IsCancel bei Button Abbrechen bewirkt dass Form geschlossen ohne Ereignishandler
@@ -28,24 +36,64 @@ namespace RGB_Mischer_Programmieren
             InitializeComponent();
         }
 
-        private void OnSaveCSV(object sender, RoutedEventArgs e)
+    public Speichern(ColorValues savingColor) : this()
+        {
+            //InitializeComponent();
+            color = savingColor;
+            saveColor = new SaveFileDialog
+            {
+                InitialDirectory = Properties.Settings.Default.Pfad_Save,
+            };
+        }
+
+        private void OnSaveCSV()
+        {
+            
+        }
+
+        private void OnSaveDatenbank()
         {
 
         }
 
-        private void OnSaveDatenbank(object sender, RoutedEventArgs e)
+        private void OnSaveXML()
         {
-
-        }
-
-        private void OnSaveXML(object sender, RoutedEventArgs e)
-        {
-
+            showExplorer("xml");
+            colorSerializer = new XmlSerializer(typeof(ColorValues));
+            colorStream = new FileStream(Properties.Settings.Default.Pfad_Save, FileMode.Create);
+            colorSerializer.Serialize(colorStream, color);
+            colorStream.Close();
         }
 
         private void btn_WeiterClick(object sender, RoutedEventArgs e)
         {
+            if (ch_SaveCSV.IsChecked == true)
+                OnSaveXML();
+            else if (ch_SaveDatenbank.IsChecked == true)
+                OnSaveDatenbank();
+            else if (ch_SaveXML.IsChecked == true)
+                OnSaveXML();
 
+            this.Close();
+        }
+
+        private void showExplorer(string datatype)
+        {
+            if(datatype == "txt")
+            {
+                saveColor.Filter = "Text File (*.txt) | *.txt";
+                saveColor.FileName = "Color.txt";
+            }
+            else
+            {
+                saveColor.Filter = "XML Files (*.xml) | *.xml";
+                saveColor.FileName = "Color.xml";
+            }
+            if (saveColor.ShowDialog() == true)
+            {
+                Properties.Settings.Default.Pfad_Save = saveColor.FileName;
+                Properties.Settings.Default.Save();
+            }
         }
 
     }
