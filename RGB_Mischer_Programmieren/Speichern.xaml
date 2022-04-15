@@ -27,7 +27,8 @@
             <Button Name="btn_Weiter" Margin="20,0,10,0" Click="btn_WeiterClick"
                     Width="150" Height="50" Content="Weiter" FontSize="20"/>
             <Button Name="btn_Abbrechen" Margin="5" IsCancel="True" Grid.Column="1"
-                    Width="150" Height="50" Content="Abbrechen" FontSize="20" HorizontalAlignment="Center"/>
+                    Width="150" Height="50" Content="Abbrechen" FontSize="20" HorizontalAlignment="Center"
+                    Click="btn_AbbrechenClick"/>
         </Grid>      
     </Grid>
 </Window>
