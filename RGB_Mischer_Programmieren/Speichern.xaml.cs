@@ -27,6 +27,7 @@ namespace RGB_Mischer_Programmieren
         SaveFileDialog saveColor;
         XmlSerializer colorSerializer;
         FileStream colorStream;
+        StringBuilder colorCSV;
         public Speichern()  
         {
             /*
@@ -48,7 +49,11 @@ namespace RGB_Mischer_Programmieren
 
         private void OnSaveCSV()
         {
-            
+            showExplorer("txt");
+            colorCSV = new StringBuilder();
+            colorCSV.Clear();
+            colorCSV.AppendLine(color.ToString());
+            File.WriteAllText(Properties.Settings.Default.Pfad_Save, colorCSV.ToString());
         }
 
         private void OnSaveDatenbank()
@@ -68,7 +73,7 @@ namespace RGB_Mischer_Programmieren
         private void btn_WeiterClick(object sender, RoutedEventArgs e)
         {
             if (ch_SaveCSV.IsChecked == true)
-                OnSaveXML();
+                OnSaveCSV();
             else if (ch_SaveDatenbank.IsChecked == true)
                 OnSaveDatenbank();
             else if (ch_SaveXML.IsChecked == true)

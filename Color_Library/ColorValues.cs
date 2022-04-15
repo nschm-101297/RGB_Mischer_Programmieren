@@ -24,6 +24,16 @@ namespace Color_Library
         public Byte Transparency { get; set; }
         public string ColorName { get; set; }
         public Color MyColor { get; set; }
-        #endregion 
+        #endregion
+
+        #region Definition Methoden
+        public override string ToString()
+        {
+            string values = this.Red.ToString() + "," + this.Green.ToString() + ","
+                + this.Blue.ToString() + "," + this.Transparency.ToString() + ","
+                + this.ColorName;
+            return values;
+        }
+        #endregion
     }
 }
