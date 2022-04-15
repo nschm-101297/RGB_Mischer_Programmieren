@@ -27,6 +27,7 @@ namespace RGB_Mischer_Programmieren
     {
         ColorValues color;
         Speichern speichern;
+        Oeffnen oeffnen;
         Binding backgroundWindow;
         public MainWindow()
         {
@@ -243,6 +244,12 @@ namespace RGB_Mischer_Programmieren
             Properties.Settings.Default.BackgroundButton = System.Drawing.Color.FromArgb(color.Transparency,
                color.Red, color.Green, color.Blue);
             Properties.Settings.Default.Save();
+        }
+
+        private void ValuesOpening(object sender, RoutedEventArgs e)
+        {
+            oeffnen = new Oeffnen();
+            oeffnen.oeffnenFenster.ShowDialog();
         }
     }
 }

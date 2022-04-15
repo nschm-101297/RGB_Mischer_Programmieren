@@ -28,7 +28,7 @@
         <Menu Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
               Converter={StaticResource colorConverter}}">
             <MenuItem Header="Datei">
-                <MenuItem Header="Öffnen"/>
+                <MenuItem Header="Öffnen" Click="ValuesOpening"/>
                 <MenuItem Header="Speichern" Click="ValuesSaving"/>
                 <MenuItem Header="Speichern unter"/>
             </MenuItem>
@@ -240,7 +240,7 @@
                             Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, Converter={StaticResource colorConverter}}">
                          Kopieren
                     </Button>
-                    <Button Grid.Row="1" Width="125" Margin="5" 
+                    <Button Grid.Row="1" Width="125" Margin="5" Click="ValuesOpening"
                             Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground, Converter={StaticResource colorConverter}}"
                             Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, Converter={StaticResource colorConverter}}">
                         Öffnen
