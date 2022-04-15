@@ -35,6 +35,11 @@ namespace RGB_Mischer_Programmieren
              + Drücken ESC-Taste
              */
             InitializeComponent();
+            color = (ColorValues)TryFindResource("color");
+            saveColor = new SaveFileDialog
+            {
+                InitialDirectory = Properties.Settings.Default.Pfad_Save,
+            };
         }
 
     public Speichern(ColorValues savingColor) : this()
