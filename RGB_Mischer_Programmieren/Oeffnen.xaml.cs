@@ -31,7 +31,7 @@ namespace RGB_Mischer_Programmieren
 
         private void btn_AbbrechenClick(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }
