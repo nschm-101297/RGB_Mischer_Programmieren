@@ -38,6 +38,7 @@ namespace RGB_Mischer_Programmieren
             var newColor = Properties.Settings.Default.BackgroundWindow;
             this.Background = new SolidColorBrush(new Color { A = newColor.A, B = newColor.B, R = newColor.R, G = newColor.G });
             backgroundWindow = new Binding();
+            color = (ColorValues)TryFindResource("color");
         }
 
         private void SetBinding()
@@ -211,7 +212,7 @@ namespace RGB_Mischer_Programmieren
                 return;
             }
             color.ColorName = txt_NameColor.Text;
-            speichern = new Speichern(color);
+            speichern = new Speichern();
             speichern.speichernFenster.ShowDialog();
         }
 
@@ -250,6 +251,12 @@ namespace RGB_Mischer_Programmieren
         {
             oeffnen = new Oeffnen();
             oeffnen.oeffnenFenster.ShowDialog();
+            //txt_Red.Text = color.Red.ToString();
+            //txt_Green.Text = color.Green.ToString();
+            //txt_Blue.Text = color.Blue.ToString();
+            //txt_Trans.Text = color.Transparency.ToString();
+            //txt_NameColor.Text = color.ColorName;
+            sl_Red.Value = color.Red;
         }
     }
 }
