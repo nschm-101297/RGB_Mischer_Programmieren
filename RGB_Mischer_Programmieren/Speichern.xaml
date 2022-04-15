@@ -3,9 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:properties="clr-namespace:RGB_Mischer_Programmieren.Properties"
         xmlns:local="clr-namespace:RGB_Mischer_Programmieren"
         mc:Ignorable="d"
         Title="Speichern in" Height="450" Width="400" Name="speichernFenster">
+    <Window.Resources>
+        <local:ValueConverter x:Key="converter"/>
+        <local:ColorValueConverter x:Key="colorConverter"/>
+    </Window.Resources>
+    <Window.Background>
+        <SolidColorBrush Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundWindow,
+              Converter={StaticResource colorConverter}}"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,21 +23,41 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <CheckBox Name="ch_SaveCSV" Grid.Row="0" Margin="10" 
-                  Content="CSV-Datei" FontSize="20"/>
+                  Content="CSV-Datei" FontSize="20"
+                  Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
+                  Converter={StaticResource colorConverter}}"
+                  Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
+                  Converter={StaticResource colorConverter}}"/>
         <CheckBox Name="ch_SaveDatenbank" Grid.Row="1" Margin="10" VerticalAlignment="Center"
-                  Content="Datenbank" FontSize="20"/>
+                  Content="Datenbank" FontSize="20"                 
+                  Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
+                  Converter={StaticResource colorConverter}}"
+                  Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
+                  Converter={StaticResource colorConverter}}"/>
         <CheckBox Name="ch_SaveXML" Grid.Row="2" Margin="10"
-                  Content="XML-Datei" FontSize="20" VerticalAlignment="Top"/>
+                  Content="XML-Datei" FontSize="20" VerticalAlignment="Top"
+                  Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
+                  Converter={StaticResource colorConverter}}"                  
+                  Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
+                  Converter={StaticResource colorConverter}}"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Name="btn_Weiter" Margin="20,0,10,0" Click="btn_WeiterClick"
-                    Width="150" Height="50" Content="Weiter" FontSize="20"/>
+                    Width="150" Height="50" Content="Weiter" FontSize="20"
+                    Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
+                    Converter={StaticResource colorConverter}}"
+                    Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, 
+                    Converter={StaticResource colorConverter}}"/>
             <Button Name="btn_Abbrechen" Margin="5" IsCancel="True" Grid.Column="1"
                     Width="150" Height="50" Content="Abbrechen" FontSize="20" HorizontalAlignment="Center"
-                    Click="btn_AbbrechenClick"/>
+                    Click="btn_AbbrechenClick"                   
+                    Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
+                    Converter={StaticResource colorConverter}}"
+                    Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundButton, 
+                    Converter={StaticResource colorConverter}}"/>
         </Grid>      
     </Grid>
 </Window>
