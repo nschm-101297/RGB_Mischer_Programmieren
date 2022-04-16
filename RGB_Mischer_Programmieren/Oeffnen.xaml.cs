@@ -29,6 +29,10 @@ namespace RGB_Mischer_Programmieren
         FileStream file;
         public Oeffnen()
         {
+            /*
+             Link Aufbau System.Windows.Media
+            https://docs.microsoft.com/de-de/dotnet/api/system.windows.media.color?view=windowsdesktop-6.0
+             */
             InitializeComponent();
             color = (ColorValues)TryFindResource("color");
             openColor = new OpenFileDialog
@@ -54,7 +58,7 @@ namespace RGB_Mischer_Programmieren
 
         private void LoadCSVValues()
         {
-            ShowEditor("txt");
+            
         }
 
         private void LoadDBValues()
@@ -75,12 +79,10 @@ namespace RGB_Mischer_Programmieren
             if (datatype == "txt")
             {
                 openColor.Filter = "Text File (*.txt) | *.txt";
-                openColor.FileName = "Color.txt";
             }
             else
             {
                 openColor.Filter = "XML Files (*.xml) | *.xml";
-                openColor.FileName = "Color.xml";
             }
             if (openColor.ShowDialog() == true)
             {
