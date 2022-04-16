@@ -9,7 +9,7 @@ namespace Color_Library.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Colors",
+                name: "colorValues",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
@@ -18,18 +18,19 @@ namespace Color_Library.Migrations
                     Green = table.Column<byte>(type: "INTEGER", nullable: false),
                     Blue = table.Column<byte>(type: "INTEGER", nullable: false),
                     Transparency = table.Column<byte>(type: "INTEGER", nullable: false),
-                    ColorName = table.Column<string>(type: "TEXT", nullable: false)
+                    ColorName = table.Column<string>(type: "TEXT", nullable: false),
+                    MyColorZeichenkette = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Colors", x => x.ID);
+                    table.PrimaryKey("PK_colorValues", x => x.ID);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Colors");
+                name: "colorValues");
         }
     }
 }

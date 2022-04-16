@@ -63,7 +63,18 @@ namespace RGB_Mischer_Programmieren
 
         private void OnSaveDatenbank()
         {
-
+            color.Transparency = 255;
+            color.Red = 255;
+            color.Green = 0;    
+            color.Blue = 0;
+            color.ColorName = "Red";
+            color.MyColor = Colors.Red;
+            using(var context = new Database_ColorValues())
+            {
+                context.colorValues.Add(color);
+                context.SaveChanges();
+            }
+            this.Close();
         }
 
         private void OnSaveXML()

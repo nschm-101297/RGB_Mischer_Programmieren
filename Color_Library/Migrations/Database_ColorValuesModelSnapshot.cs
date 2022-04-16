@@ -32,6 +32,10 @@ namespace Color_Library.Migrations
                     b.Property<byte>("Green")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("MyColorZeichenkette")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<byte>("Red")
                         .HasColumnType("INTEGER");
 
@@ -40,7 +44,7 @@ namespace Color_Library.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Colors");
+                    b.ToTable("colorValues");
                 });
 #pragma warning restore 612, 618
         }
