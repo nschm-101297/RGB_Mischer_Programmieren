@@ -52,6 +52,11 @@ namespace Color_Library
                 + this.MyColor.ToString();
             return values;
         }
+
+        public void ChangeStringColor()
+        {
+            this.MyColor = (Color)ColorConverter.ConvertFromString(MyColorZeichenkette);
+        }
         #endregion
     }
 }

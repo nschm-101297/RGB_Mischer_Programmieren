@@ -15,6 +15,7 @@ using Color_Library;
 using Microsoft.Win32;
 using System.Xml.Serialization;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace RGB_Mischer_Programmieren
 {
@@ -75,7 +76,17 @@ namespace RGB_Mischer_Programmieren
 
         private void LoadDBValues()
         {
-
+            ObservableCollection<ColorValues> colorValues = new ObservableCollection<ColorValues>();
+            using(var data = new Database_ColorValues())
+            {
+                var query = data.colorValues.ToList();
+                foreach(var value in query)
+                {
+                    value.ChangeStringColor();
+                    colorValues.Add(value);
+                }
+            }
+            this.Close();
         }
         private void LoadXMLValues()
         {
