@@ -31,7 +31,7 @@ namespace Color_Library
         {
             string values = this.Red.ToString() + "," + this.Green.ToString() + ","
                 + this.Blue.ToString() + "," + this.Transparency.ToString() + ","
-                + this.ColorName;
+                + this.ColorName + "," + this.MyColor.ToString();
             return values;
         }
         #endregion

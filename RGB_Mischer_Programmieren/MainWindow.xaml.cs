@@ -225,8 +225,6 @@ namespace RGB_Mischer_Programmieren
 
         private void ChangeFontColor(object sender, RoutedEventArgs e)
         {
-            //SolidColorBrush foregroundColor = (SolidColorBrush)FindResource("foreground");
-            //foregroundColor.Color = color.MyColor;
             Properties.Settings.Default.Foreground = System.Drawing.Color.FromArgb(color.Transparency,
                 color.Red, color.Green, color.Blue);
             Properties.Settings.Default.Save();
@@ -234,12 +232,6 @@ namespace RGB_Mischer_Programmieren
 
         private void ChangeBackgroundColorControls(object sender, RoutedEventArgs e)
         {
-            //SolidColorBrush backgroundColor = (SolidColorBrush)FindResource("background");
-            //SolidColorBrush backgroundColorButton = (SolidColorBrush)FindResource("backgroundButton");
-            //SolidColorBrush backgroundColor = (SolidColorBrush)Application.Current.Resources["background"];
-            //SolidColorBrush backgroundColorButton = (SolidColorBrush)Application.Current.Resources["backgroundButton"];
-            //backgroundColor.Color = color.MyColor;
-            //backgroundColorButton.Color = color.MyColor;
             Properties.Settings.Default.Background = System.Drawing.Color.FromArgb(color.Transparency,
                color.Red, color.Green, color.Blue);
             Properties.Settings.Default.BackgroundButton = System.Drawing.Color.FromArgb(color.Transparency,
@@ -251,12 +243,14 @@ namespace RGB_Mischer_Programmieren
         {
             oeffnen = new Oeffnen();
             oeffnen.oeffnenFenster.ShowDialog();
-            //txt_Red.Text = color.Red.ToString();
-            //txt_Green.Text = color.Green.ToString();
-            //txt_Blue.Text = color.Blue.ToString();
-            //txt_Trans.Text = color.Transparency.ToString();
-            //txt_NameColor.Text = color.ColorName;
-            sl_Red.Value = color.Red;
+            color = null;
+            color = (ColorValues)TryFindResource("color");
+            txt_Red.Text = color.Red.ToString();
+            txt_Green.Text = color.Green.ToString();
+            txt_Blue.Text = color.Blue.ToString();
+            txt_Trans.Text = color.Transparency.ToString();
+            txt_NameColor.Text = color.ColorName;
+            //sl_Red.Value = color.Red;
         }
     }
 }
