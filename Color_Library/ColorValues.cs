@@ -29,9 +29,10 @@ namespace Color_Library
         #region Definition Methoden
         public override string ToString()
         {
-            string values = this.Red.ToString() + "," + this.Green.ToString() + ","
-                + this.Blue.ToString() + "," + this.Transparency.ToString() + ","
-                + this.ColorName + "," + this.MyColor.ToString();
+            string values = this.Transparency.ToString() + ","
+                + this.Red.ToString() + "," + this.Green.ToString() + ","
+                + this.Blue.ToString() + "," +  this.ColorName + "," 
+                + this.MyColor.ToString();
             return values;
         }
         #endregion

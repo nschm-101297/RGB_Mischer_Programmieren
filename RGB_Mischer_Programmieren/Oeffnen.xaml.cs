@@ -58,7 +58,19 @@ namespace RGB_Mischer_Programmieren
 
         private void LoadCSVValues()
         {
-            
+            ShowEditor("txt");
+            color = (ColorValues)TryFindResource("color");
+            string[] values = File.ReadAllLines(Properties.Settings.Default.Pfad_Save);
+            foreach(string data in values)
+            {
+                string[] values2 = data.Split(',');
+                color.Transparency = Convert.ToByte(values2[0]);
+                color.Red = Convert.ToByte(values2[1]);
+                color.Green = Convert.ToByte(values2[2]);
+                color.Blue = Convert.ToByte(values2[3]);
+                color.ColorName = values2[4];
+                color.MyColor = (Color)ColorConverter.ConvertFromString(values2[5]);
+            }
         }
 
         private void LoadDBValues()
