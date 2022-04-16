@@ -1,6 +1,8 @@
 ﻿using System.Windows.Media;
 using System.Windows;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Color_Library
 {
@@ -18,11 +20,14 @@ namespace Color_Library
         #endregion
 
         #region Definition Eigenschaften
+        [Key]
+        public int ID { get; set; }
         public Byte Red { get; set; }
         public Byte Green { get; set; }
         public Byte Blue { get; set; }
         public Byte Transparency { get; set; }
         public string ColorName { get; set; }
+        [NotMapped]
         public Color MyColor { get; set; }
         #endregion
 
