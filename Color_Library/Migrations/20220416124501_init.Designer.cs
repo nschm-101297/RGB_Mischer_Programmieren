@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Color_Library.Migrations
 {
     [DbContext(typeof(Database_ColorValues))]
-    [Migration("20220416085202_init")]
+    [Migration("20220416124501_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,10 @@ namespace Color_Library.Migrations
                     b.Property<byte>("Green")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("MyColorZeichenkette")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<byte>("Red")
                         .HasColumnType("INTEGER");
 
@@ -42,7 +46,7 @@ namespace Color_Library.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Colors");
+                    b.ToTable("colorValues");
                 });
 #pragma warning restore 612, 618
         }

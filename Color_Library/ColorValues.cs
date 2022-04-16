@@ -27,8 +27,20 @@ namespace Color_Library
         public Byte Blue { get; set; }
         public Byte Transparency { get; set; }
         public string ColorName { get; set; }
+        public string MyColorZeichenkette { get; set; }
         [NotMapped]
-        public Color MyColor { get; set; }
+        private Color _myColor;
+        [NotMapped]
+        public Color MyColor { get
+            {
+                return _myColor;
+            }
+            set
+            {
+                _myColor = value;
+                MyColorZeichenkette = _myColor.ToString();
+            }
+        }
         #endregion
 
         #region Definition Methoden
