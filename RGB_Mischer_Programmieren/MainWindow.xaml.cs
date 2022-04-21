@@ -245,12 +245,15 @@ namespace RGB_Mischer_Programmieren
             oeffnen.oeffnenFenster.ShowDialog();
             color = null;
             color = (ColorValues)TryFindResource("color");
-            txt_Red.Text = color.Red.ToString();
-            txt_Green.Text = color.Green.ToString();
-            txt_Blue.Text = color.Blue.ToString();
-            txt_Trans.Text = color.Transparency.ToString();
+            //txt_Red.Text = color.Red.ToString();
+            //txt_Green.Text = color.Green.ToString();
+            //txt_Blue.Text = color.Blue.ToString();
+            //txt_Trans.Text = color.Transparency.ToString();
             txt_NameColor.Text = color.ColorName;
-            //sl_Red.Value = color.Red;
+            sl_Red.Value = color.Red;
+            sl_Green.Value = color.Green;
+            sl_Blue.Value = color.Blue;
+            sl_Trans.Value = color.Transparency;
         }
     }
 }
