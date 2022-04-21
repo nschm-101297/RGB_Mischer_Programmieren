@@ -19,7 +19,7 @@ namespace Color_Library
         {
             string path = @"D:\Projekte_Informatik\C#\Projekte\RGB_Mischer_Programmieren\Color_Library\bin\Debug\net6.0\datenbank.db";
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite(@"Data Source=datenbank.db");
+            optionsBuilder.UseSqlite($"Data Source={path}");
             
            
         }

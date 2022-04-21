@@ -72,6 +72,7 @@ namespace RGB_Mischer_Programmieren
                 color.ColorName = values2[4];
                 color.MyColor = (Color)ColorConverter.ConvertFromString(values2[5]);
             }
+            this.Close ();
         }
 
         private void LoadDBValues()

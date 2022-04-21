@@ -63,6 +63,7 @@ namespace RGB_Mischer_Programmieren
 
         private void OnSaveDatenbank()
         {
+            color.ID = 0;
             color.Transparency = 255;
             color.Red = 255;
             color.Green = 0;    
