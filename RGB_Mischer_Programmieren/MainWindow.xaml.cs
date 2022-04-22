@@ -32,13 +32,12 @@ namespace RGB_Mischer_Programmieren
         public MainWindow()
         {
             InitializeComponent();
-            color = new ColorValues();
+            color = (ColorValues)TryFindResource("color");
             rc_Finished_Color.Fill = colorChanged();
             txt_FinishedCommand.Text = FinishedCommand();
             var newColor = Properties.Settings.Default.BackgroundWindow;
             this.Background = new SolidColorBrush(new Color { A = newColor.A, B = newColor.B, R = newColor.R, G = newColor.G });
             backgroundWindow = new Binding();
-            color = (ColorValues)TryFindResource("color");
         }
 
         private void SetBinding()
