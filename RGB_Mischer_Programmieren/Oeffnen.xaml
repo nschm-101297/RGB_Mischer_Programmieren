@@ -43,6 +43,20 @@
                      Converter={StaticResource colorConverter}}"
                      Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
                      Converter={StaticResource colorConverter}}"/>
+        <ListView Grid.RowSpan="3"
+                  Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
+                  Converter={StaticResource colorConverter}}"
+                  Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
+                  Converter={StaticResource colorConverter}}"
+                  Name="lst_Color_Database"
+                  Visibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Farbnamen" DisplayMemberBinding="{Binding ColorName}"
+                                    Width="375"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

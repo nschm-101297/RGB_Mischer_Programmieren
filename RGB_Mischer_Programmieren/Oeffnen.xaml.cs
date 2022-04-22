@@ -28,6 +28,7 @@ namespace RGB_Mischer_Programmieren
         OpenFileDialog openColor;
         XmlSerializer deserialization;
         FileStream file;
+        ObservableCollection<ColorValues> colorValues;
         public Oeffnen()
         {
             /*
@@ -40,15 +41,28 @@ namespace RGB_Mischer_Programmieren
             {
                 InitialDirectory = Properties.Settings.Default.Pfad_Save,
             };
+            //lst_Color_Database.ItemsSource = colorValues;
         }
 
         private void btn_WeiterClick(object sender, RoutedEventArgs e)
         {
+            if(lst_Color_Database.Visibility == Visibility.Visible
+                &&
+                lst_Color_Database.SelectedValue != null) { 
+                color = (ColorValues)lst_Color_Database.SelectedItem;
+                rb_Datenbank.IsChecked = false;
+                this.Close();
+            }
             if (rb_CSV.IsChecked == true)
                 LoadCSVValues();
-            else if (rb_Datenbank.IsChecked == true)
+            else if (rb_Datenbank.IsChecked == true) { 
                 LoadDBValues();
-            else
+                rb_CSV.Visibility = Visibility.Collapsed;
+                rb_Datenbank.Visibility = Visibility.Collapsed;
+                rb_XML.Visibility = Visibility.Collapsed;
+                lst_Color_Database.Visibility = Visibility.Visible;
+            }
+            else if(rb_XML.IsChecked == true) 
                 LoadXMLValues();
         }
 
@@ -77,7 +91,7 @@ namespace RGB_Mischer_Programmieren
 
         private void LoadDBValues()
         {
-            ObservableCollection<ColorValues> colorValues = new ObservableCollection<ColorValues>();
+            colorValues = new ObservableCollection<ColorValues>();
             using(var data = new Database_ColorValues())
             {
                 var query = data.colorValues.ToList();
@@ -87,7 +101,8 @@ namespace RGB_Mischer_Programmieren
                     colorValues.Add(value);
                 }
             }
-            this.Close();
+            //this.Close();
+            lst_Color_Database.ItemsSource = colorValues;
         }
         private void LoadXMLValues()
         {
