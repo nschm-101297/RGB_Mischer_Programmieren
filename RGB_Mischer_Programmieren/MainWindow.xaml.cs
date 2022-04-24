@@ -260,7 +260,13 @@ namespace RGB_Mischer_Programmieren
             sl_Blue.Value = color.Blue;
             sl_Trans.Value = color.Transparency;
             valueChangedBlocked = false;
-            rc_Finished_Color.Fill = colorChanged();
+            if (rc_Finished_Color.Visibility == Visibility.Visible)
+                rc_Finished_Color.Fill = colorChanged();
+            else if (c_Finished_Color.Visibility == Visibility.Visible)
+                c_Finished_Color.Fill = colorChanged();
+            else
+                tr_Finished_Color.Fill= colorChanged();
+
         }
     }
 }
