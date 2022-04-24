@@ -28,21 +28,24 @@
                      Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
                      Converter={StaticResource colorConverter}}"
                      Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
-                     Converter={StaticResource colorConverter}}"/>
+                     Converter={StaticResource colorConverter}}"
+                     Click="rb_Clicked"/>
         <RadioButton Content="Datenbank" Margin="10" Grid.Row="1" VerticalAlignment="Center"
                      Name="rb_Datenbank"
                      GroupName="Dateien" FontSize="20"
                      Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
                      Converter={StaticResource colorConverter}}"
                      Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
-                     Converter={StaticResource colorConverter}}"/>
+                     Converter={StaticResource colorConverter}}"
+                     Click="rb_Clicked"/>
         <RadioButton Content="XML" Margin="10" Grid.Row="2" VerticalAlignment="Center"
                      Name="rb_XML"
                      GroupName="Dateien" FontSize="20"
                      Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
                      Converter={StaticResource colorConverter}}"
                      Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
-                     Converter={StaticResource colorConverter}}"/>
+                     Converter={StaticResource colorConverter}}"
+                     Click="rb_Clicked"/>
         <ListView Grid.RowSpan="3"
                   Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
                   Converter={StaticResource colorConverter}}"

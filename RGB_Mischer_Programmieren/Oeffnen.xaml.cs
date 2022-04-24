@@ -43,7 +43,7 @@ namespace RGB_Mischer_Programmieren
             {
                 InitialDirectory = Properties.Settings.Default.Pfad_Save,
             };
-            //lst_Color_Database.ItemsSource = colorValues;
+            btn_Weiter.IsEnabled = false;
         }
 
         private void btn_WeiterClick(object sender, RoutedEventArgs e)
@@ -150,6 +150,20 @@ namespace RGB_Mischer_Programmieren
                 Properties.Settings.Default.Pfad_Save = openColor.FileName;
                 Properties.Settings.Default.Save();
             }
+        }
+        private void rb_Clicked(object sender, RoutedEventArgs e)
+        {
+            EvaluateRadioButtons();
+        }
+
+        private void EvaluateRadioButtons()
+        {
+            if (rb_CSV.IsChecked == true ||
+                rb_Datenbank.IsChecked == true ||
+                rb_XML.IsChecked == true)
+                btn_Weiter.IsEnabled = true;
+            else
+                btn_Weiter.IsEnabled = false;
         }
     }
 }
