@@ -29,9 +29,10 @@ namespace RGB_Mischer_Programmieren
         Speichern speichern;
         Oeffnen oeffnen;
         Binding backgroundWindow;
+        bool valueChangedBlocked = false;
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); 
             color = (ColorValues)TryFindResource("color");
             rc_Finished_Color.Fill = colorChanged();
             txt_FinishedCommand.Text = FinishedCommand();
@@ -142,15 +143,19 @@ namespace RGB_Mischer_Programmieren
         }
         private SolidColorBrush colorChanged()
         {
-            if(color == null)
-                color = new ColorValues();
-            color.Red = Convert.ToByte(sl_Red.Value);
-            color.Green = Convert.ToByte(sl_Green.Value);
-            color.Blue = Convert.ToByte(sl_Blue.Value);
-            color.Transparency = Convert.ToByte(sl_Trans.Value);
-            color.MyColor = Color.FromArgb(color.Transparency, color.Red, color.Green, color.Blue);
-            SolidColorBrush newColor = new SolidColorBrush(color.MyColor);
-            
+            SolidColorBrush newColor = null;
+            if (valueChangedBlocked == false)
+            {
+                if (color == null)
+                    color = new ColorValues();
+                color.Red = Convert.ToByte(sl_Red.Value);
+                color.Green = Convert.ToByte(sl_Green.Value);
+                color.Blue = Convert.ToByte(sl_Blue.Value);
+                color.Transparency = Convert.ToByte(sl_Trans.Value);
+                color.MyColor = Color.FromArgb(color.Transparency, color.Red, color.Green, color.Blue);
+                newColor = new SolidColorBrush(color.MyColor);
+            }
+            //newColor = new SolidColorBrush(color.MyColor);
             return newColor;
         }
 
@@ -240,6 +245,7 @@ namespace RGB_Mischer_Programmieren
 
         private void ValuesOpening(object sender, RoutedEventArgs e)
         {
+            valueChangedBlocked = true;
             oeffnen = new Oeffnen();
             oeffnen.oeffnenFenster.ShowDialog();
             color = null;
@@ -253,6 +259,8 @@ namespace RGB_Mischer_Programmieren
             sl_Green.Value = color.Green;
             sl_Blue.Value = color.Blue;
             sl_Trans.Value = color.Transparency;
+            valueChangedBlocked = false;
+            rc_Finished_Color.Fill = colorChanged();
         }
     }
 }
