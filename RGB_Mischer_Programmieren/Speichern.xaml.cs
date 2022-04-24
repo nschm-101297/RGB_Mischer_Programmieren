@@ -42,6 +42,7 @@ namespace RGB_Mischer_Programmieren
             {
                 InitialDirectory = Properties.Settings.Default.Pfad_Save,
             };
+            btn_Weiter.IsEnabled = false;
         }
 
     public Speichern(ColorValues savingColor) : this()
@@ -117,6 +118,21 @@ namespace RGB_Mischer_Programmieren
         private void btn_AbbrechenClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void ch_Clicked(object sender, RoutedEventArgs e)
+        {
+            EvaluateCheckBoxen();
+        }
+
+        private void EvaluateCheckBoxen()
+        {
+            if(ch_SaveCSV.IsChecked == true ||
+                ch_SaveDatenbank.IsChecked == true ||
+                ch_SaveXML.IsChecked == true)
+                btn_Weiter.IsEnabled = true;
+            else
+                btn_Weiter.IsEnabled = false;
         }
     }
 }

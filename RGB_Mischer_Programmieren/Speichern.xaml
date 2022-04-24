@@ -27,19 +27,22 @@
                   Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
                   Converter={StaticResource colorConverter}}"
                   Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
-                  Converter={StaticResource colorConverter}}"/>
+                  Converter={StaticResource colorConverter}}"
+                  Click="ch_Clicked"/>
         <CheckBox Name="ch_SaveDatenbank" Grid.Row="1" Margin="10" VerticalAlignment="Center"
                   Content="Datenbank" FontSize="20"                 
                   Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
                   Converter={StaticResource colorConverter}}"
                   Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
-                  Converter={StaticResource colorConverter}}"/>
+                  Converter={StaticResource colorConverter}}"
+                  Click="ch_Clicked"/>
         <CheckBox Name="ch_SaveXML" Grid.Row="2" Margin="10"
                   Content="XML-Datei" FontSize="20" VerticalAlignment="Top"
                   Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground,
                   Converter={StaticResource colorConverter}}"                  
                   Background="{Binding Source={x:Static properties:Settings.Default}, Path=Background, 
-                  Converter={StaticResource colorConverter}}"/>
+                  Converter={StaticResource colorConverter}}"
+                  Click="ch_Clicked"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
