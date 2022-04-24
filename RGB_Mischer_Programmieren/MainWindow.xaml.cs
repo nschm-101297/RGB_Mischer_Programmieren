@@ -222,9 +222,11 @@ namespace RGB_Mischer_Programmieren
 
         private void ChangeBackgroundColor(object sender, RoutedEventArgs e)
         {
+            //https://microsoft-programmierer.de/Net-Framework/WPF/Controls-Elements/WPF_colon_-Background-zur-Laufzeit-%C3%A4ndern?2010
             Properties.Settings.Default.BackgroundWindow = System.Drawing.Color.FromArgb(color.Transparency,
               color.Red, color.Green, color.Blue);
             Properties.Settings.Default.Save();
+            this.Background = new SolidColorBrush(Color.FromArgb(color.Transparency, color.Red, color.Green, color.Blue));
         }
 
         private void ChangeFontColor(object sender, RoutedEventArgs e)
