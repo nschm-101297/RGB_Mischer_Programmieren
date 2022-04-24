@@ -28,7 +28,6 @@ namespace RGB_Mischer_Programmieren
         ColorValues color;
         Speichern speichern;
         Oeffnen oeffnen;
-        Binding backgroundWindow;
         bool valueChangedBlocked = false;
         public MainWindow()
         {
@@ -38,7 +37,6 @@ namespace RGB_Mischer_Programmieren
             txt_FinishedCommand.Text = FinishedCommand();
             var newColor = Properties.Settings.Default.BackgroundWindow;
             this.Background = new SolidColorBrush(new Color { A = newColor.A, B = newColor.B, R = newColor.R, G = newColor.G });
-            backgroundWindow = new Binding();
         }
 
         private void SetBinding()

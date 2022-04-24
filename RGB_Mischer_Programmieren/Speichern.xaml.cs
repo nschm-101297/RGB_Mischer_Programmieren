@@ -36,6 +36,8 @@ namespace RGB_Mischer_Programmieren
              */
             InitializeComponent();
             color = (ColorValues)TryFindResource("color");
+            var newColor = Properties.Settings.Default.BackgroundWindow;
+            this.Background = new SolidColorBrush(new Color { A = newColor.A, B = newColor.B, R = newColor.R, G = newColor.G });
             saveColor = new SaveFileDialog
             {
                 InitialDirectory = Properties.Settings.Default.Pfad_Save,
