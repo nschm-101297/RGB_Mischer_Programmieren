@@ -46,10 +46,20 @@ namespace RGB_Mischer_Programmieren
 
         private void btn_WeiterClick(object sender, RoutedEventArgs e)
         {
+            ColorValues values = new ColorValues();
             if(lst_Color_Database.Visibility == Visibility.Visible
                 &&
                 lst_Color_Database.SelectedValue != null) { 
-                color = (ColorValues)lst_Color_Database.SelectedItem;
+                values = (ColorValues)lst_Color_Database.SelectedItem;
+                color = (ColorValues)TryFindResource("color");
+                //color = (ColorValues)lst_Color_Database.SelectedItem;
+                color.Red = values.Red;
+                color.Green = values.Green;
+                color.Blue = values.Blue;
+                color.Transparency = values.Transparency;
+                color.ColorName = values.ColorName;
+                color.MyColorZeichenkette = values.MyColorZeichenkette;
+                color.MyColor = values.MyColor;
                 rb_Datenbank.IsChecked = false;
                 this.Close();
             }
@@ -91,6 +101,7 @@ namespace RGB_Mischer_Programmieren
 
         private void LoadDBValues()
         {
+            color = (ColorValues)TryFindResource("color");
             colorValues = new ObservableCollection<ColorValues>();
             using(var data = new Database_ColorValues())
             {
@@ -106,10 +117,19 @@ namespace RGB_Mischer_Programmieren
         }
         private void LoadXMLValues()
         {
+            color = (ColorValues)TryFindResource("color");
             ShowEditor("xml");
             file = new FileStream(Properties.Settings.Default.Pfad_Save, FileMode.Open);
             deserialization = new XmlSerializer(typeof(ColorValues));
-            color = (ColorValues)deserialization.Deserialize(file);
+            ColorValues colorValues = (ColorValues)deserialization.Deserialize(file);
+            //color = (ColorValues)deserialization.Deserialize(file);
+            color.Red = colorValues.Red;
+            color.Green = colorValues.Green;
+            color.Blue = colorValues.Blue;
+            color.Transparency = colorValues.Transparency;
+            color.ColorName = colorValues.ColorName;
+            color.MyColor = colorValues.MyColor;
+            colorValues.MyColorZeichenkette = colorValues.MyColorZeichenkette;
             file.Close();
             this.Close();
         }

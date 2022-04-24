@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Color_Library.Migrations
 {
     [DbContext(typeof(Database_ColorValues))]
-    [Migration("20220417133610_Init")]
-    partial class Init
+    [Migration("20220423142547_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -17,7 +17,8 @@ namespace Color_Library
         public DbSet<ColorValues> colorValues { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string path = @"D:\Projekte_Informatik\C#\Projekte\RGB_Mischer_Programmieren\Color_Library\bin\Debug\net6.0\datenbank.db";
+            //string path = @"D:\Projekte_Informatik\C#\Projekte\RGB_Mischer_Programmieren\Color_Library\bin\Debug\net6.0\datenbank.db";
+            string path = @"D:\Projekte_Informatik\C#\Projekte\RGB_Mischer_Programmieren\RGB_Mischer_Programmieren\RGB_Mischer_Programmieren\bin\Debug\net6.0-windows\datenbank.db";
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlite($"Data Source={path}");
             
