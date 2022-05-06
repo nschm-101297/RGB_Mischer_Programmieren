@@ -24,7 +24,7 @@ namespace RGB_Mischer_Programmieren
     /// </summary>
     public partial class Oeffnen : Window
     {
-        ColorValues color;
+        public ColorValues color;
         OpenFileDialog openColor;
         XmlSerializer deserialization;
         FileStream file;
@@ -123,15 +123,15 @@ namespace RGB_Mischer_Programmieren
             ShowEditor("xml");
             file = new FileStream(Properties.Settings.Default.Pfad_Save, FileMode.Open);
             deserialization = new XmlSerializer(typeof(ColorValues));
-            ColorValues colorValues = (ColorValues)deserialization.Deserialize(file);
-            //color = (ColorValues)deserialization.Deserialize(file);
-            color.Red = colorValues.Red;
-            color.Green = colorValues.Green;
-            color.Blue = colorValues.Blue;
-            color.Transparency = colorValues.Transparency;
-            color.ColorName = colorValues.ColorName;
-            color.MyColor = colorValues.MyColor;
-            colorValues.MyColorZeichenkette = colorValues.MyColorZeichenkette;
+            //ColorValues colorValues = (ColorValues)deserialization.Deserialize(file);
+            color = (ColorValues)deserialization.Deserialize(file);
+            //color.Red = colorValues.Red;
+            //color.Green = colorValues.Green;
+            //color.Blue = colorValues.Blue;
+            //color.Transparency = colorValues.Transparency;
+            //color.ColorName = colorValues.ColorName;
+            //color.MyColor = colorValues.MyColor;
+            //colorValues.MyColorZeichenkette = colorValues.MyColorZeichenkette;
             file.Close();
             this.Close();
         }

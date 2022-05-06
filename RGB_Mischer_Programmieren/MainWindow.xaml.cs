@@ -248,17 +248,16 @@ namespace RGB_Mischer_Programmieren
             valueChangedBlocked = true;
             oeffnen = new Oeffnen();
             oeffnen.oeffnenFenster.ShowDialog();
-            color = null;
-            color = (ColorValues)TryFindResource("color");
-            //txt_Red.Text = color.Red.ToString();
-            //txt_Green.Text = color.Green.ToString();
-            //txt_Blue.Text = color.Blue.ToString();
-            //txt_Trans.Text = color.Transparency.ToString();
+            color = oeffnen.color;
+            txt_Red.Text = color.Red.ToString("x2");
+            txt_Green.Text = color.Green.ToString("x2");
+            txt_Blue.Text = color.Blue.ToString("x2");
+            txt_Trans.Text = color.Transparency.ToString("x2");
             txt_NameColor.Text = color.ColorName;
-            sl_Red.Value = color.Red;
-            sl_Green.Value = color.Green;
-            sl_Blue.Value = color.Blue;
-            sl_Trans.Value = color.Transparency;
+            //sl_Red.Value = color.Red;
+            //sl_Green.Value = color.Green;
+            //sl_Blue.Value = color.Blue;
+            //sl_Trans.Value = color.Transparency;
             valueChangedBlocked = false;
             if (rc_Finished_Color.Visibility == Visibility.Visible)
                 rc_Finished_Color.Fill = colorChanged();
